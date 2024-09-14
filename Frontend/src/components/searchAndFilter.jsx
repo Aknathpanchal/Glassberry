@@ -22,6 +22,13 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
         setLoading(true);
         setError(null);
 
+        const hasFilters = Object.values(filters).some((filter) => filter !== '');
+    
+        if (!hasFilters) {
+            setLoading(false); // Stop loading if no filters are applied
+            return;
+        }
+
         // Build the query string based on non-empty filter fields
         const queryParams = new URLSearchParams();
         for (const [key, value] of Object.entries(filters)) {
@@ -45,15 +52,15 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
     };
 
     return (
-        <div className="p-6 mx-auto">
-            <form onSubmit={handleSubmit} className="flex flex-wrap gap-4 mb-6">
+        <div className="p-2 mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-wrap gap-3 mb-6">
                 <input
                     type="text"
                     name="name"
                     value={filters.name}
                     onChange={handleFilterChange}
                     placeholder="Search by name"
-                    className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 p-2 w-[150px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                     type="text"
@@ -61,7 +68,7 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
                     value={filters.location}
                     onChange={handleFilterChange}
                     placeholder="Search by location"
-                    className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 p-2 w-[150px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                     type="number"
@@ -69,7 +76,7 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
                     value={filters.minPrice}
                     onChange={handleFilterChange}
                     placeholder="Min Price"
-                    className="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-[100px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                     type="number"
@@ -77,13 +84,13 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
                     value={filters.maxPrice}
                     onChange={handleFilterChange}
                     placeholder="Max Price"
-                    className="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-[100px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <select
                     name="type"
                     value={filters.type}
                     onChange={handleFilterChange}
-                    className="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-[120px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">All Types</option>
                     {types.map(t => (
@@ -92,9 +99,9 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
                 </select>
                 <button
                     type="submit"
-                    className="w-full md:w-auto p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full sm:w-auto p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                    {loading ? 'Loading...' : 'Apply Filters'}
+                    {loading ? 'Loading...' : 'Apply'}
                 </button>
             </form>
             {error && <p className="text-red-500">{error}</p>}

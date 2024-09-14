@@ -6,7 +6,7 @@ import SearchAndFilter from './components/searchAndFilter';
 
 export const fetchData = async (setTasks) => {
   try {
-    const response = await fetch(`http://localhost:8080/shree/tasks`);
+    const response = await fetch(`https://backend-navy-one-38.vercel.app/shree/tasks`);
     const data = await response.json();
     setTasks(data);
   } catch (error) {
