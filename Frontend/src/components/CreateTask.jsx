@@ -59,7 +59,7 @@ const CreateTask = ({ tasks, setTasks }) => {
     });
 
     try {
-      const response = await fetch("https://backend-navy-one-38.vercel.app/shree/task", {
+      const response = await fetch("https://glassberry-ruby.vercel.app/shree/task", {
         method: "POST",
         body: formData,
       });
