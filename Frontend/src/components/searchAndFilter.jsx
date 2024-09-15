@@ -37,7 +37,7 @@ const SearchAndFilter = ({ tasks, setTasks }) => {
             }
         }
 
-        fetch(`http://localhost:8080/shree/task?${queryParams.toString()}`) // Ensure this matches your backend endpoint
+        fetch(`https://backend-navy-one-38.vercel.app/shree/task?${queryParams.toString()}`) // Ensure this matches your backend endpoint
             .then(response => response.json())
             .then(data => {
                 setTasks(data);

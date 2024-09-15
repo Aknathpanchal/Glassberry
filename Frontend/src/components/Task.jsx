@@ -47,7 +47,7 @@ const Task = ({
 
   const handleDeleteTask = async (id) => {
     try {
-      await fetch(`http://localhost:8080/shree/task/${id}`, {
+      await fetch(`https://backend-navy-one-38.vercel.app/shree/task/${id}`, {
         method: "DELETE",
       });
       fetchData(setTasks);
@@ -72,7 +72,7 @@ const Task = ({
         price: priorityValue,
         type: categoryValue,
       };
-      await fetch(`http://localhost:8080/shree/task/${task._id}`, {
+      await fetch(`https://backend-navy-one-38.vercel.app/shree/task/${task._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
